@@ -1,6 +1,6 @@
+<!-- eslint-disable no-undef -->
 <script lang="ts" setup>
 const layout = 'main'
-type Theme = 'light' | 'dark'
 const setColorTheme = (newTheme: Theme) => {
      useColorMode().preference = newTheme
 }
