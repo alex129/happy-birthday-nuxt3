@@ -13,8 +13,10 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         public: {
-            happyBirthdayTitle: '¡Happy Birthday Bru!',
-            happyBirthdayContent: 'Si estas aqui es que has leido el QR que estaba en el primer regalo, si quieres saber cual es el segundo, dale click a start!'
+            happyBirthdayTitle: '¡Happy Birthday Nowi 🖤!',
+            happyBirthdayContent: 'Si estas aqui es que has leido el QR que estaba en el primer regalo, si quieres saber cual es el segundo, dale click a start!',
+            giftTitle: '🎟 Brunch with Plikk 🎟',
+            happyBirthdayGiftContent: 'Bueno despues de esta parida que te he hecho jajaja muchisimas felicidades love ❤️‍🔥🖤❤️‍🔥 you da fucking best! espero que te haya gustado mi primer regalo y espero poder seguir regalandote muchos más.'
         }
     }
 })

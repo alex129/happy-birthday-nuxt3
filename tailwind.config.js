@@ -31,7 +31,7 @@ module.exports = {
       animation: {
         'waving-hand': 'wave 2s linear infinite',
         sunset: 'sunset 0.5s',
-        'float-balloon': 'float 8s linear infinite'
+        'float-balloon': 'float 4s linear infinite'
       }
     },
     fontFamily: {
