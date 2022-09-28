@@ -29,7 +29,7 @@ const caughtCat = (cat) => {
   totalCats.value[cat].caught = true
 
   if (allTrapped.value) {
-    setTimeout(() => navigate(), 2000)
+    setTimeout(() => navigate(), 5000)
   }
 }
 
@@ -45,9 +45,9 @@ function navigate() {
 </script>
 <template>
   <div class="dark:text-white px-5 h-full overflow-hidden">
-    <div class="grid justify-items-center content-center h-full text-center gap-5">
+    <div class="grid justify-items-center content-center h-full text-center">
       <h2>{{ config.public.happyBirthdayTitle }}</h2>
-      <p>{{ config.public.happyBirthdayContent }}</p>
+      <p class="my-12">{{ config.public.happyBirthdayContent }}</p>
       <div v-for="(item, index) in totalCats" :key="index">
         <img
           v-if="item.show"
@@ -58,10 +58,13 @@ function navigate() {
         />
       </div>
       <p v-if="started && !allTrapped">Atrapalos!</p>
-      <p v-if="totalCats.some((c) => c.caught)">
+      <p v-if="totalCats.some((c) => c.caught)" class="my-5">
         {{ totalCats.filter((c) => c.caught).length }} / {{ totalCats.length }} atrapados
       </p>
-      <p v-if="allTrapped">Letsgooo has atrapado todos, abriendo el regalo</p>
+      <div v-if="allTrapped" class="grid justify-items-center mt-5">
+        <WaivyLoading text="Abriendo regalo ..." />
+        <img class="w-10 mt-2" src="/assets/gif/naruto-loading.gif" />
+      </div>
       <button v-if="!started" class="relative inline-block text-lg group" @click="start">
         <span
           class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white"
