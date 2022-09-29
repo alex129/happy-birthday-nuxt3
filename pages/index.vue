@@ -1,18 +1,21 @@
 <script lang="ts" setup>
+import { useCatsStore } from '~~/store/cats'
 import { getRandomPosition } from '~~/utils/utils'
-const config = useRuntimeConfig()
 
-const totalCats = ref<Cat[]>([
-  { show: false, position: getRandomPosition(), caught: false },
-  { show: false, position: getRandomPosition(), caught: false },
-  { show: false, position: getRandomPosition(), caught: false },
-  { show: false, position: getRandomPosition(), caught: false },
-])
+const config = useRuntimeConfig()
+const store = useCatsStore()
+
 const textStartButton = ref('Start')
 const started = ref(false)
 
+onMounted(() => {
+  for (let i = 0; i < 4; i++) {
+    store.add({ position: getRandomPosition(), show: false, trapped: false })
+  }
+})
+
 const start = () => {
-  totalCats.value.forEach((element, index) => {
+  store.cats.forEach((element: Cat, index) => {
     setTimeout(() => (element.show = true), index * 5500)
   })
 
@@ -20,18 +23,12 @@ const start = () => {
   setTimeout(() => (started.value = true), 300)
 }
 
-const caughtCat = (cat) => {
-  totalCats.value[cat].show = false
-  totalCats.value[cat].caught = true
-
-  if (allTrapped.value) {
+const trapCat = (cat) => {
+  store.trap(cat)
+  if (store.allTrapped) {
     setTimeout(() => navigate(), 5000)
   }
 }
-
-const allTrapped = computed(() => {
-  return totalCats.value.length === totalCats.value.filter((c) => c.caught).length
-})
 
 function navigate() {
   return navigateTo({
@@ -44,20 +41,20 @@ function navigate() {
     <div class="grid justify-items-center content-center h-full text-center">
       <h2>{{ config.public.happyBirthdayTitle }}</h2>
       <p class="my-12">{{ config.public.happyBirthdayContent }}</p>
-      <div v-for="(item, index) in totalCats" :key="index">
+      <div v-for="(cat, index) in (store.cats as Cat[])" :key="index">
         <img
-          v-if="item.show"
+          v-if="cat.show"
           class="w-12 z-20 absolute bottom-0 animate-float-balloon transform transition duration-500 hover:scale-110"
-          :style="`left: ${item.position}vw`"
+          :style="`left: ${cat.position}vw`"
           src="/assets/img/cat-baloon.webp"
-          @click="caughtCat(index)"
+          @click="trapCat(cat)"
         />
       </div>
-      <p v-if="started && !allTrapped">Atrapalos!</p>
-      <p v-if="totalCats.some((c) => c.caught)" class="my-5">
-        {{ totalCats.filter((c) => c.caught).length }} / {{ totalCats.length }} atrapados
+      <p v-if="started && !store.allTrapped">Atrapalos!</p>
+      <p v-if="store.cats.some((c) => c.trapped)" class="my-5">
+        {{ store.cats.filter((c) => c.trapped).length }} / {{ store.cats.length }} atrapados
       </p>
-      <div v-if="allTrapped" class="grid justify-items-center mt-5">
+      <div v-if="store.allTrapped" class="grid justify-items-center mt-5">
         <WaivyLoading text="Abriendo regalo ..." />
         <img class="w-10 mt-2" src="/assets/gif/naruto-loading.gif" />
       </div>

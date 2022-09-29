@@ -15,10 +15,10 @@ export default defineNuxtConfig({
     public: {
       happyBirthdayTitle: '¡Happy Birthday Nowi 🖤!',
       happyBirthdayContent:
-        'Si estas leyendo esto es que has recibido el primer regalo, esto que estas viendo forma parte del segundo, si quieres saber como continua, dale a "start"',
+        'Si estas leyendo esto es que has recibido el primer regalo y has escaneado el QR, esto es mi otro regalo chorra, dale a "Start" para continuar',
       giftTitle: '🎟 Brunch with Plikk 🎟',
       extraInfo:
-        'Bueno despues de esta parida que te he hecho jajaja muchisimas felicidades love ❤️‍🔥🖤❤️‍🔥 you da fucking best! espero que te haya gustado mi primer regalo y espero poder seguir regalandote muchos más. Love you <3',
+        'Basicamente es un "vale" para un brunch donde quieras y cuando quieras jsjsjs y despues de esta parida que te he hecho jajaja muchisimas felicidades love. You da fucking best! espero que te haya gustado el regalo y espero poder seguir regalandote muchos más. Love you 💚',
     },
   },
 })

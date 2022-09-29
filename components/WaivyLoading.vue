@@ -5,7 +5,6 @@ const text = computed(() => {
   for (let i = 0; i < props.text.length; i++) {
     data.push(props.text[i])
   }
-  console.log(data)
   return data
 })
 </script>

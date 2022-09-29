@@ -1,5 +1,5 @@
 import { setActivePinia, createPinia } from 'pinia'
-import { describe, test, expect, beforeAll, beforeEach, afterEach } from 'vitest'
+import { describe, test, expect, beforeAll, beforeEach, afterAll } from 'vitest'
 import { useCatsStore } from '../../store/cats'
 
 beforeAll(() => {
@@ -19,7 +19,7 @@ describe('useTodoStore', () => {
     store = useCatsStore()
   })
 
-  afterEach(() => {
+  afterAll(() => {
     store.$reset()
   })
 
@@ -33,14 +33,27 @@ describe('useTodoStore', () => {
 
   test('add cats with action', () => {
     const cats: Cat[] = [
-      { show: false, caught: false, position: 0 },
-      { show: false, caught: false, position: 0 },
-      { show: false, caught: false, position: 0 },
-      { show: false, caught: false, position: 0 },
+      { show: false, trapped: false, position: 0 },
+      { show: false, trapped: false, position: 0 },
+      { show: false, trapped: false, position: 0 },
+      { show: false, trapped: false, position: 0 },
     ]
     cats.forEach((cat) => {
       store.add(cat)
     })
     expect(store.cats.length).toBe(4)
+  })
+
+  test('trap one cat should return trapped', () => {
+    store.trap(store.cats[0])
+    expect(store.cats[0].trapped).toBe(true)
+    expect(store.allTrapped).toBe(false)
+  })
+
+  test('trap all cats should be all trapped true', () => {
+    store.cats.forEach((cat: Cat) => {
+      store.trap(cat)
+    })
+    expect(store.allTrapped).toBe(true)
   })
 })
