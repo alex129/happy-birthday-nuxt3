@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useCatsStore } from '~~/store/cats'
-import { getRandomPosition } from '~~/utils/utils'
+import { useCatsStore } from '../store/cats'
+import { getRandomPosition } from '../utils/utils'
 
 const config = useRuntimeConfig()
 const store = useCatsStore()
