@@ -56,4 +56,9 @@ describe('useTodoStore', () => {
     })
     expect(store.allTrapped).toBe(true)
   })
+
+  test('allTraped getter should be false if theres no cats', () => {
+    store.$reset()
+    expect(store.allTrapped).toBe(false)
+  })
 })
