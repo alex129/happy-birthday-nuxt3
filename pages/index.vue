@@ -1,10 +1,6 @@
 <script lang="ts" setup>
+import { getRandomPosition } from '~~/utils/utils'
 const config = useRuntimeConfig()
-
-const getRandomPosition = () => {
-  const randomNumber = (Math.random() * (80 - 20) + 20).toFixed(0)
-  return parseInt(randomNumber)
-}
 
 const totalCats = ref<Cat[]>([
   { show: false, position: getRandomPosition(), caught: false },
