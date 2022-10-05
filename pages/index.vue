@@ -9,6 +9,7 @@ const textStartButton = ref('Start')
 const started = ref(false)
 
 onMounted(() => {
+  store.$reset()
   for (let i = 0; i < 4; i++) {
     store.add({ position: getRandomPosition(), show: false, trapped: false })
   }
